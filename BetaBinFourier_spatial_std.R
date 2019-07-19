@@ -283,7 +283,7 @@ phi.hat <- exp(estim$par[p+3])
 mu.pred.hat <- as.numeric(D.pred%*%estim$par[1:p])
 Omega <- quad.points/phi.hat
 F.mat.pred <- cbind(cos(grid.pred%*%t(Omega)),
-                    sin(grid.pred%*%t(Omega)))
+                    sin(grid.pred%*%t(Omega)))/sqrt(m)
 n.samples <- (n.sim-burnin)/thin
 eta.samples <- sapply(1:n.samples,function(i) mu.pred.hat+F.mat.pred%*%sim[i,])
 prev.samples <- 1/(1+exp(-eta.samples))
